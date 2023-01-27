@@ -21,7 +21,7 @@ const createAuthUser = async (req, res) => {
 
         const { password, ...others } = user._doc;
         // consoling here
-        console.log(password, "password", others, "Others");
+        // console.log(password, "password", others, "Others");
 
         const token = createToken(others);
         return res.status(201).json({
@@ -53,7 +53,7 @@ const loginAuthUser = async (req, res) => {
         
         const { password, ...others } = user._doc;
         const token = createToken(user);
-        console.log("login token", token);
+        // console.log("login token", token);
         res.status(200).json({
             success: true,
             others:others,
@@ -74,7 +74,7 @@ function createToken(user) {
         email: user.email
     }
 
-    const token = jwt.sign(payload, process.env.JWT_SECRET);
+    const token = jwt.sign(payload, process.env.JWT_SECRET,{expiresIn:"1h"});
     return token;
 };
 

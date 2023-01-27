@@ -11,6 +11,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // routes
 app.use("/auth", require("./routes/auth.users.routes"));
+app.use("/products", require("./routes/products.routes"));
+app.use("upload", require("./routes/productImage.routes"));
+
 
 // connnect database
 const PORT = process.env.PORT || 3002;
