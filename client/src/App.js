@@ -11,11 +11,14 @@ import AddressPage from "./Components/AddressPages/AddressPage";
 import ProductDetails from "./Components/productDetails/ProductDetails";
 import Footer from "./Components/footer/Footer"
 
-import {Routes,Route} from "react-router-dom"
+import { Routes, Route } from "react-router-dom"
+import "./App.css"
 
 function App() {
   return (
-    <div>
+    <div
+      // className='App'
+    >
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
