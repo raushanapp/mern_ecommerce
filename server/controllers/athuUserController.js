@@ -56,7 +56,7 @@ const loginAuthUser = async (req, res) => {
         // console.log("login token", token);
         res.status(200).json({
             success: true,
-            others:others,
+            user:others,
             token: token
         })
         

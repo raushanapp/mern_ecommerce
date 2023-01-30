@@ -2,22 +2,69 @@ import React from 'react'
 import style from "./create.module.css";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { useState } from 'react';
-
+import {useNavigate} from "react-router-dom"
 function Create() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [firstImg, setFirstImg] = useState("");
   const [secondImg, setSecondImg] = useState("");
   const [price, setPrice] = useState(0);
-  const [stars, setStars] = useState(1);
+  const [stars, setStars] = useState(3);
+  const navigate=useNavigate()
   const onChangefileFirst = (e) => {
     setFirstImg(e.target.files[0])
   };
   const onChangefileSecond = (e) => {
     setSecondImg(e.target.files[0])
  }
-  const handleCreateProduct = (e) => {
+  const handleCreateProduct = async(e) => {
     e.preventDefault();
+    try {
+      const formData1 = new FormData();
+      const formData2 = new FormData();
+
+      let filename1 = null;
+      let filename2 = null;
+      if (firstImg && secondImg) {
+        filename1 = Date.now() + firstImg.name;
+        filename2 = Date.now() + secondImg.name;
+        // first img
+        formData1.append("filename", filename1);
+        formData1.append("firstImg", firstImg);
+        // second img
+        formData2.append("filename", filename2);
+        formData2.append("secondImg", secondImg);
+
+        await fetch(`http://localhost:3001/upload/firstImg`, {
+          method: "POST",
+          body:formData1
+        })
+        await fetch(`http://localhost:3001/upload/secondImg`, {
+          method: "POST",
+          body:formData2
+        })
+      }
+      // upload the product and navigate to product
+      let resp = await fetch(`http://locahost:3001/products/create`, {
+        method: "POST",
+        headers: {
+          "Content-Type":"application/json"
+        },
+        body: JSON.stringify({
+          title,
+          description,
+          firstImg: filename1,
+          secondImg: filename2,
+          price,
+          stars
+        })
+      })
+      let product = await resp.json();
+      console.log(product);
+      navigate(`/productDetails/${product?._id}`);
+    } catch (error) {
+      console.log(error.message);
+    }
     console.log(title,description,price,stars);
     
   }
