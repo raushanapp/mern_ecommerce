@@ -3,6 +3,7 @@ import style from "./create.module.css";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { useState } from 'react';
 import {useNavigate} from "react-router-dom"
+import { useSelector } from 'react-redux';
 function Create() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -10,7 +11,9 @@ function Create() {
   const [secondImg, setSecondImg] = useState("");
   const [price, setPrice] = useState(0);
   const [stars, setStars] = useState(3);
-  const navigate=useNavigate()
+  const navigate = useNavigate();
+  const { token } = useSelector((state) => state.auth);
+  console.log(token);
   const onChangefileFirst = (e) => {
     setFirstImg(e.target.files[0])
   };
@@ -35,20 +38,27 @@ function Create() {
         formData2.append("filename", filename2);
         formData2.append("secondImg", secondImg);
 
-        await fetch(`http://localhost:3001/upload/firstImg`, {
+        await  fetch(`http://localhost:3001/upload/firstImg`, {
           method: "POST",
-          body:formData1
-        })
-        await fetch(`http://localhost:3001/upload/secondImg`, {
+          body: formData1,
+          headers: {
+            "Authorization":`Bearer ${token}`
+          }
+        });
+        await  fetch(`http://localhost:3001/upload/secondImg`, {
           method: "POST",
-          body:formData2
-        })
+          body: formData2,
+          headers: {
+            "Authorization":`Bearer ${token}`
+          }
+        });
       }
       // upload the product and navigate to product
-      let resp = await fetch(`http://locahost:3001/products/create`, {
+      let resp = await fetch(`http://localhost:3001/products/create`, {
         method: "POST",
         headers: {
-          "Content-Type":"application/json"
+          "Content-Type": "application/json",
+          "Authorization":`Bearer ${token}`
         },
         body: JSON.stringify({
           title,

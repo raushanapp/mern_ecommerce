@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import style from "./login.module.css";
 import {Link, useNavigate} from "react-router-dom"
+import { useDispatch } from 'react-redux';
+import { login } from '../../redux/authSlice';
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleLogin = async(e) => {
     e.preventDefault();
@@ -22,6 +25,7 @@ function Login() {
         // return;
       };
       const data = await resp.json();
+      dispatch(login(data));
       console.log(data);
       navigate("/");
     } catch (error) {

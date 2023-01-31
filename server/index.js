@@ -8,11 +8,14 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// upload to server images inside public floder
+app.use("/images", express.static("public/images"));
+
 
 // routes
 app.use("/auth", require("./routes/auth.users.routes"));
 app.use("/products", require("./routes/products.routes"));
-app.use("upload", require("./routes/productImage.routes"));
+app.use("/upload", require("./routes/productImage.routes"));
 
 
 // connnect database

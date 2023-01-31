@@ -2,6 +2,8 @@ import React from 'react'
 import style from "./register.module.css";
 import {Link, useNavigate} from "react-router-dom"
 import { useState } from 'react';
+import { useDispatch } from "react-redux";
+import { register } from '../../redux/authSlice';
 function Register() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -9,6 +11,7 @@ function Register() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
@@ -28,6 +31,7 @@ function Register() {
         throw new Error("Wrong credentials");
       };
       const data = await resp.json();
+      dispatch(register(data));  // {others token}
       navigate("/");
       console.log(data);
     } catch (error) {
