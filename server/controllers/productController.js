@@ -44,7 +44,7 @@ const getAllProducts = async(req,res) => {
 // get single products by id
 const getSingleProducts = async (req, res) => {
     const {id} = req.params
-    console.log(id)
+    // console.log(id)
     try {
         const product = await Product.findById({ _id: id }).lean().exec();
         // console.log(product,"prooo....")

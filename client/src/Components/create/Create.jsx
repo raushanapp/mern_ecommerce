@@ -13,7 +13,7 @@ function Create() {
   const [stars, setStars] = useState(3);
   const navigate = useNavigate();
   const { token } = useSelector((state) => state.auth);
-  console.log(token);
+  // console.log(token);
   const onChangefileFirst = (e) => {
     setFirstImg(e.target.files[0])
   };
@@ -71,13 +71,13 @@ function Create() {
       })
       let product = await resp.json();
       console.log(product);
-      navigate(`/productDetails/${product?._id}`);
+      navigate(`/productDetails/${product?.product?._id}`);
     } catch (error) {
       console.log(error.message);
     }
-    console.log(title,description,price,stars);
-    
+    // console.log(title,description,price,stars);
   }
+  
   const handleCloseImg = (numberImage) => {
     if (numberImage==="first") {
       setFirstImg(pre => "");
