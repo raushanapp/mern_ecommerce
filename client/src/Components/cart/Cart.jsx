@@ -30,7 +30,7 @@ function Cart() {
             <h1 className={style.noProducts} >No products yet in the cart</h1>
           ) : (
               products?.length > 0 && products?.map((product) => (
-                <div key={product.id} className={style.cartitem}>
+                <div key={product.id} className={style.cartItem}>
                   <Link to={`/productDetails/${product.id}`} >
                     <img
                       src={`http://localhost:3001/images/${product?.mainImg}`}
@@ -38,7 +38,7 @@ function Cart() {
                     className={style.img}
                     />
                   </Link>
-                  <div className={style.priceAddTitle4}>
+                  <div className={style.priceAddTitle}>
                     <p className={style.productTitle}>{product?.title}</p>
                     <span className={style.productPrice}>
                       {product.quantity} X <span>$</span> {product?.price}
