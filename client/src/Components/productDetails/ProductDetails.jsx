@@ -14,8 +14,8 @@ function ProductDetails() {
   const { id } = useParams();
   const { products } = useSelector((state) => state.cart);
 
-
-  const fetchSingleProduct = async () => {
+  console.log(products)
+   const fetchSingleProduct = async () => {
     try {
       const res = await fetch(`http://localhost:3001/products/${id}`);
       const data = await res.json();
@@ -37,17 +37,16 @@ function ProductDetails() {
   };
 
   const addProductToCart = () => {
-    console.log(quantityProduct,product.title,product.price,product.description)
     dispatch(addProduct({
       quantity: quantityProduct,
-      title: product.title,
-      description: product.description,
-      price: product.price,
-      id: product._id,
-      mainImg:product.firstImg
+      title: product?.title,
+      description: product?.description,
+      price: product?.price,
+      id: product?._id,
+      mainImg:product?.firstImg
     }))
+    setQuantityProduct(pre => 1);
   }
-  console.log(products)
   return (
     <div className={style.container}>
       <div className={style.wrapper}>

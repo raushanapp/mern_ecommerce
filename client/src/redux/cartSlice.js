@@ -9,25 +9,24 @@ export const cartSlice = createSlice({
     name: "cart",
     initialState,
     reducers: {
-        addProduct: (state, action) => {
-            console.log(action.payload,"cartslice")
-            const product = state.products?.find((product) => product.id === action.payload.id);
+        addProduct(state, action) {
+            // console.log(state, action.payload,"product")
+            const product = state.products.find((product) => product.id === action.payload.id);
             if (product) {
                 product.quantity += action.payload.quantity;
             }
             else {
+                // console.log(state,action.payload,"cartslice")
                 state.products.push(action.payload);
             }
-            // state.products.push(action.payload);
-            console.log("after push", state.products);
         },
-        removeProduct: (state, action) => {
+        removeProduct(state, action){
             state.products = state.products.filter((product) => product.id !== action.payload.id);
         },
-        emptyCart: (state) => {
+        emptyCart(state){
             state.products = [];
         },
-        toggleShowCart: (state) => {
+        toggleShowCart(state){
             state.showCart = !state.showCart;
         }
     }
