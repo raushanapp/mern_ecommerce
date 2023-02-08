@@ -59,3 +59,68 @@
     cursor: pointer;
     transition: 250ms all ease-in-out;
 }
+.trashIcon:hover{
+    transform: translateY(2px);
+}
+.subtotal{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    font-size: 20px;
+}
+.checkoutBtn{
+    margin: 1rem 0;
+    text-decoration: none;
+    background-color: rgb(57,57,206);
+    color: #fff;
+    width: 175px;
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent;
+    transition-duration: 150ms all;
+    border-radius: 20px;
+}
+.checkoutBtn:hover{
+    color: rgb(57,57,206);
+    background-color: #fff;
+    border-color: rgb(57,57,206);
+}
+.resetCart{
+    position: sticky;
+    bottom: 0.25rem;
+    left: 0.25rem;
+    color:#f00;
+    font-size: 19px;
+    font-weight: 500;
+    cursor: pointer;
+    background-color: transparent;
+    padding: 1.5rem;
+
+}
+.subtotal{
+    margin-top: 2.5rem;
+}
+.noProducts{
+    text-align: center;
+    font-weight: bold;
+    font-size: 28px;
+}
+.removeIcon{
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    font-size: 28px;
+    cursor: pointer;
+    transition: 150ms all ease-in-out;
+}
+.removeIcon:hover{
+    fill:#555;
+}
+/* dollar sign */
+.totalPrice span {
+    font-size: 16px;
+}

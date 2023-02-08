@@ -34,7 +34,7 @@ function Navbar() {
           <span className={style.username1}>{user?.username}</span> 
           <span className={style.logoutBtn}onClick={handleLogout} >Logout</span>
           <div className={style.cartContainer} onClick={handleToggleCart} >
-            <AiOutlineShoppingCart />
+            <AiOutlineShoppingCart  />
             <span className={style.cartCount}>{ products?.length||0}</span>
           </div>
         </div>

@@ -16,10 +16,10 @@ function Cart() {
     dispatch(removeProduct({id}))
   }
   const handleCloseCart = () => {
-    dispatch(emptyCart())
+    dispatch(toggleShowCart());
   };
   const resetCart = () => {
-    dispatch(toggleShowCart());
+    dispatch(emptyCart())
   }
   return (
     <div className={style.container}>
@@ -52,6 +52,22 @@ function Cart() {
               ))
           )}
         </div>
+        {total > 0 &&
+          <>
+          <div className={style.subtotal}>
+            <span>Subtotal</span>
+            <span className={style.totalPrice}>
+              <span>$</span> {Number(total).toFixed(2)}
+            </span>
+          </div>
+          <Link
+            to='/addressDetails'
+            className={style.checkoutBtn}
+            onClick={handleCloseCart}
+          >
+            Proceed to checkout
+          </Link>
+          </>}
         {total > 0 && (
           <div
             className={style.resetCart}
